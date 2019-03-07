@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Counter from './components/Counter';  
+import Home from './components/Home';
+import Education from './components/Education'
+
 
 class App extends Component {
+constructor(props){
+  super(props);
+  this.state = {isRuning : true}
+  console.log(" i am in the constructor")
+
+}
+  
+stopCounter =() =>{
+  this.setState ({...this.state, isRuning : false})
+
+}
+ 
+
+
   render() {
-    return (
+    console.log('I am in RENDER of the App.js.');
+    return  this.state.isRuning ?(
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      
+      <h2>Clicking this button will destroy the Counter component and clear the state.</h2>
+        <button onClick={this.stopCounter}>Stop the counter</button>
+      
+    <Counter/>
+          <Home/>   
+        <Education/>
       </div>
-    );
+    ): null
   }
 }
 
